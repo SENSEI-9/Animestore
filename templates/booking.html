@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>booking</title>
+    {% load static %}
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+
+    
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#about">about</a>
+            <a href="#keyring">keyring</a>
+            <a href="#products">statue</a>
+            <a href="#bag">bag</a>
+            <a href="#contact">contact</a>
+            
+            
+    
+        </nav>
+        {% if request.session.customer_id %}
+    
+        <div class="icons">  
+            <div class="btn"><a href="/signout" >Sign out</a></div>
+        </div>
+        
+        {% else %}
+        <div class="icons">  
+            <div class="btn"><a href="/login" >Login</a></div>
+        </div>
+        {% endif %}
+    
+        
+            </div>
+            <a href="#" class="btn">checkout now</a>
+        </div>
+    
+    </header>
+  <div class="container-fluid" style="align-items:center;display:flex;justify-content:center; background-color: aquamarine; border:2px solid rgb(204, 38, 38); border-radius: 5rem; margin-top: 3rem;">
+      <div class="col-lg-6 col-md-8 col-sm-10 col">
+          
+    <form action="/booking/bookingfinal" method="post">
+        {% csrf_token %}
+        <div class="input-group md-form form-sm">
+            <div class="input-group-append mt-2" >
+                <label class="col-lg-12 required">Product name</label>
+                <input type="text" name = name value="{{product.name}}" class="form-control col-lg-12" style="margin-left:3.5rem">
+            </div>
+          </div>
+        
+        <div class="input-group md-form form-sm">
+            <div class="input-group-append mt-2" >
+                <label class="col-lg-12 ">Price</label>
+                <input type="text" name ='price' value ={{product.price}} class="form-control col-lg-12" style="margin-left:7rem">
+            </div>
+         </div>
+        
+         <div class="input-group md-form form-sm">
+            <div class="input-group-append mt-2" >
+                <label class="col-lg-12 ">Type</label>
+                <input type="text" name="type" value={{product.type}} class="form-control col-lg-12" style="margin-left:7rem">
+            </div>
+         </div>
+
+         <div class="input-group md-form form-sm">
+            <div class="input-group-append mt-2" >
+                <label class="col-lg-12">Quantity</label>
+                <input type="text" name="quantity" value="1" class="form-control col-lg-12" style="margin-left:5rem">
+            </div>
+         </div>
+
+         <div class="input-group md-form form-sm">
+            <div class="input-group-append mt-2" >
+                <label class="col-lg-12 required">Customer name</label>
+                <input type="text" name="customer_id" value="{{request.session.customer_id}}" class="form-control col-lg-12" style="margin-left:2.6rem">
+            </div>
+         </div>
+        <input type="submit" value="Book now" style="background-color:rgb(62, 212, 192); padding: 1rem; border-radius: 1rem; color: black; font-weight: 1.5rem;">
+    </form>
+</div>
+    {% load static %}
+    <div class="col-lg-4">
+    <img  height="500px" src="{% static 'assets/' %}{{product.image}}" />
+</div>
+</div>
+</body>
+</html>

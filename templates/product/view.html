@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="/product/add" class="btn btn-primary">Add New products</a>
+<div class="table-responsive-sm">
+    <table class="table">
+      <thread class="thead bg-light">
+          <tr>
+              <th scope="col"> ID </th>
+              <th scope="col"> Name </th>
+              <th scope="col"> type </th>
+              <th scope="col"> price </th>
+              <th scope="col"> Image </th>
+               <th scope="col"> Action </th>
+
+          </tr>
+          {% for product in products %}
+          <tr class="tbody">
+              <td>{{product.id}}</td>
+              <td>{{product.name}}</td>
+              <td>{{product.type}}</td>
+              <td>{{product.price}}</td>
+              {% load static %}
+              <td><img width=100 src="{% static 'assets/'%}{{product.image}}"></td>
+              <th>
+                  <a href ='/product/edit/{{product.id}}'>Edit </a> |
+                  <a href ='/product/delete/{{product.id}}'>Delete</a>
+              </th>
+          </tr>
+           {% endfor %}
+      </thread>
+    </table>
+  </div>
+{% endblock %}

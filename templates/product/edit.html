@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <form action="/product/update/{{product.id}}" method="post">
+        {% csrf_token %}
+       
+    <label>Name</label>
+    <input type="text" name="name" value="{{product.name}}">
+    <br>
+    <label>type</label>
+   <select name="type" value="{{product.type}}">
+       <option>a</option>
+       <option>b</option>
+       <option>c</option>
+   </select>
+    <br>
+    <label>Price</label>
+    <input type="text" name="price" value="{{product.price}}">
+</br>
+<label>Image</label>
+<input type="file" name="Image" >
+</br>
+    <input type="submit" value="edit">
+    </form>
+</body>
+</html>

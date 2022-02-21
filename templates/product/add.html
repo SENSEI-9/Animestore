@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registeration</title>
+
+{% load static %}
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    
+</head>
+</body>
+
+<body>
+    <form action="/product/add" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+       
+    <label>Name</label>
+    <input type="text" name="name" placeholder ="enter name here">
+    <br>
+    <label>type</label>
+   <select name="type">
+       <option>Keyring</option>
+       <option>statue</option>
+       <option>bag</option>
+   </select>
+    <br>
+    <label>Price</label>
+    <input type="text" name="price" placeholder="enter username here">
+</br>
+<label>Image</label>
+<input type="file" name="image" >
+</br>
+    <input type="submit" value="Add">
+    </form>
+</body>
+</html>

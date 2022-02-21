@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime store</title>
+{% load static %}
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+</head>
+<body>
+    
+
+
+<header class="header">
+
+    
+
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="#about">about</a>
+        <a href="#keyring">keyring</a>
+        <a href="#statue">statue</a>
+        <a href="#bag">bag</a>
+        <a href="#contact">contact</a>
+        
+        
+
+    </nav>
+    {% if request.session.customer_id %}
+
+    <div class="icons">  
+        <div class="btn"><a href="/signout" >Sign out</a></div>
+    </div>
+    
+    {% else %}
+    <div class="icons">  
+        <div class="btn"><a href="/login" >Login</a></div>
+    </div>
+    {% endif %}
+
+    <div class="search-form">
+        <input type="search" id="search-box" placeholder="search here...">
+        <label for="search-box" class="fas fa-search"></label>
+    </div>
+
+    
+        
+    </div>
+
+</header>
+
+
+
+<section class="home" id="home">
+    <h1></h1>
+    <div class="content">
+        <h3>Kon'nichiwa</h3>
+        <p>Lol</p>
+        <a href="#keyring" class="btn">Get yours now</a>
+    </div>
+
+</section>
+
+
+
+<section class="about" id="about">
+
+    <h1 class="heading"> <span>about</span> us </h1>
+
+    <div class="row">
+ {% load static %}
+        <div class="image">
+            
+            
+        </div>
+
+        <div class="content">
+            <h3>what products do we sell?</h3>
+            <p>We sell Keyring, Sketch and Bags. </p>
+             <p>Keyring:
+                Sketch:
+                Bags:
+            </p>
+            <a href="#" class="btn">learn more</a>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="keyring" id="keyring">
+    
+    <h1 class="heading"> Keyring <span>Section </span></h1>
+    {% for keyring in keyring %}
+    <div class="box-container">
+        {% load static %}
+
+        <div class="box">
+            
+            <img  src="{% static 'assets/' %}{{keyring.image}}" />
+            <h3>{{keyring.name}}</h3>
+            <div class="price"><span>{{keyring.price}}</span></div>
+            {% if request.session.customer_id %}
+            <a href="/booking/bookingnew/{{keyring.id}}" class="btn">Buy Now</a>
+            {% else %}
+            <a href="/login" class="btn">Buy Now</a>
+            {% endif %}
+        </div>
+
+   {% endfor %}
+
+</section>
+
+
+
+
+
+
+
+<section class="statue" id="statue">
+
+    <h1 class="heading"> Statue <span>Section </span></h1>
+
+    <div class="box-container">
+
+        {% for statue in statue %}
+        
+    
+        <div class="box-container">
+            {% load static %}
+    
+            <div class="box">
+                
+                <img  src="{% static 'assets/' %}{{statue.image}}" />
+                <h3>{{statue.name}}</h3>
+                <div class="price"><span>{{statue.price}}</span></div>
+                {% if request.session.customer_id %}
+                <a href="/booking/bookingnew/{{statue.id}}" class="btn">Buy Now</a>
+                {% else %}
+                <a href="/login" class="btn">Buy Now</a>
+                {% endif %}
+            </div>
+    
+       {% endfor %}
+</section>
+
+<!-- review section starts  -->
+<section class="bag" id="bag">
+
+    <h1 class="heading">Bag <span>Section </span></h1>
+
+    <div class="box-container">
+
+        {% for bag in bag %}
+        
+    
+        <div class="box-container">
+            {% load static %}
+    
+            <div class="box">
+                
+                <img  src="{% static 'assets/' %}{{bag.image}}" />
+                <h3>{{bag.name}}</h3>
+                <div class="price"><span>{{bag.price}}</span></div>
+                {% if request.session.customer_id %}
+                <a href="/booking/bookingnew/{{bag.id}}" class="btn">Buy Now</a>
+                {% else %}
+                <a href="/login" class="btn">Buy Now</a>
+                {% endif %}
+            </div>
+    
+       {% endfor %}
+</section>
+
+
+<!-- review section ends -->
+
+<!-- contact section starts  -->
+
+<section class="contact" id="contact">
+
+    <h1 class="heading"> <span>contact</span> us </h1>
+
+    <div class="row">
+        <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=kapan&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://kokagames.com/">Koka Games</a></div><style>.mapouter{position:relative;text-align:right;width:600px;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:600px;height:400px;}.gmap_iframe {width:600px!important;height:400px!important;}</style></div>
+        <!-- <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30153.788252261566!2d72.82321484621745!3d19.141690214227783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63aceef0c69%3A0x2aa80cf2287dfa3b!2sJogeshwari%20West%2C%20Mumbai%2C%20Maharashtra%20400047!5e0!3m2!1sen!2sin!4v1629452077891!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe> -->
+
+        <form action="/contact" method="post">
+            {% csrf_token %}
+            <h3>get in touch</h3>
+            <div class="inputBox">
+                <span class="fas fa-user"></span>
+                <input type="text" name="name" placeholder="name">
+            </div>
+            <div class="inputBox">
+                <span class="fas fa-envelope"></span>
+                <input type="email" name="email" placeholder="email">
+            </div>
+            <div class="inputBox">
+                <span class="fas fa-phone"></span>
+                <input type="number" name="phone" placeholder="number">
+            </div>
+            
+            <input type="submit" value="contact now" class="btn">
+        </form>
+
+    </div>
+
+</section>
+
+<!-- contact section ends -->
+
+
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="share">
+        <a href="#" class="fab fa-facebook-f"></a>
+        <a href="#" class="fab fa-twitter"></a>
+        <a href="#" class="fab fa-instagram"></a>
+        <a href="#" class="fab fa-linkedin"></a>
+        <a href="#" class="fab fa-pinterest"></a>
+    </div>
+
+    <div class="links">
+        <a href="#home">home</a>
+        <a href="#about">about</a>
+        <a href="#keyring">keyring</a>
+        <a href="#statue">statue</a>
+        <a href="#bag">bag</a>
+        <a href="#contact">contact</a>
+        
+    </div>
+
+    <div class="credit">Created by <span>Alok Bista</span> | all rights reserved</div>
+
+</section>
+
+<!-- footer section ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
